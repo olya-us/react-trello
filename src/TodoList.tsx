@@ -31,9 +31,7 @@ const TodoList = (props: PropsType) => {
     const onCompletedClickHandler = () => {props.changeFilter("completed", props.id)}
     const removeTodoList = () => {props.removeTodoList(props.id)}
     const addTask = (title: string) => {props.addTask(title, props.id)}
-    const changeTodolistTitle = (newTitle: string) => {
-        props.changeTodolistTitle(props.id, newTitle)
-    }
+    const changeTodolistTitle = (newTitle: string) => {props.changeTodolistTitle(props.id, newTitle)}
 
     return (
         <div>

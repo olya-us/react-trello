@@ -16,13 +16,13 @@ import Paper from '@mui/material/Paper';
 
 export type FilterValuesType = "all" | "completed" | "active"
 
-type TodoListType = {
+export type TodoListType = {
   id: string,
   title: string
   filter: FilterValuesType
 }
 
-type TasksStateType = {
+export type TasksStateType = {
   [key: string]: Array<TaskType>
 }
 
@@ -153,18 +153,18 @@ function App() {
               return <Grid item>
                   <Paper elevation={6} style={{padding:"15px"}}>
                     <TodoList 
-                              key={tl.id}
-                              title={tl.title} 
-                              id={tl.id}
-                              removeTask={removeTask}
-                              tasks={taskForTodolist}
-                              changeFilter={changeFilter}
-                              addTask={addTask}
-                              changeStatus={changeStatus}
-                              filter={tl.filter}
-                              removeTodoList={removeTodoList}
-                              changeTaskTitle={changeTaskTitle}
-                              changeTodolistTitle={changeTodolistTitle}
+                      key={tl.id}
+                      title={tl.title} 
+                      id={tl.id}
+                      removeTask={removeTask}
+                      tasks={taskForTodolist}
+                      changeFilter={changeFilter}
+                      addTask={addTask}
+                      changeStatus={changeStatus}
+                      filter={tl.filter}
+                      removeTodoList={removeTodoList}
+                      changeTaskTitle={changeTaskTitle}
+                      changeTodolistTitle={changeTodolistTitle}
                     />
                   </Paper>
                 </Grid>
