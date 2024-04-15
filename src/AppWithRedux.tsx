@@ -13,6 +13,7 @@ import Paper from '@mui/material/Paper';
 import { addTodolistAC, changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from './state/todolists-reducer'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppRootState } from './state/store'
+import { useCallback } from 'react';
 
 export type FilterValuesType = "all" | "completed" | "active"
 
@@ -32,21 +33,21 @@ function AppWithRedux() {
     
   //TODOLIST
 
-  function changeFilter(value: FilterValuesType, todolistId: string) {
+  const changeFilter = useCallback((value: FilterValuesType, todolistId: string) => {
     dispatch(changeTodolistFilterAC(value, todolistId))
-  }
+  }, [dispatch])
 
-  let removeTodoList = (todolistId: string) => {
+  let removeTodoList = useCallback((todolistId: string) => {
     dispatch(removeTodolistAC(todolistId))
-  }
+  }, [dispatch])
 
-  function changeTodolistTitle(id: string, newTitle: string) {
+  const changeTodolistTitle = useCallback((id: string, newTitle: string) => {
     dispatch(changeTodolistTitleAC(id, newTitle))
-  }
+  }, [dispatch])
 
-  function addTodoList(title: string){
+  const addTodoList = useCallback((title: string) => {
     dispatch(addTodolistAC(title))
-  }
+  }, [dispatch])
 
   return (
     <div className="App">
@@ -74,12 +75,12 @@ function AppWithRedux() {
         <Grid container spacing={3}>
           {
             todolists.map(tl => {
-              return <Grid item>
+              return <Grid item key={tl.id}>
                   <Paper elevation={6} style={{padding:"15px"}}>
                     <TodoList 
                       key={tl.id}
-                      title={tl.title} 
                       id={tl.id}
+                      title={tl.title} 
                       changeFilter={changeFilter}
                       filter={tl.filter}
                       removeTodoList={removeTodoList}
